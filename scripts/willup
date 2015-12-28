@@ -1,0 +1,31 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          willup
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/stop a Don't Starve Together server
+### END INIT INFO
+
+user=willup
+
+case "$1" in
+  start)
+    sudo su $user -c "_COMMAND_START_"
+    ;;
+  stop)
+    sudo su $user -c "_COMMAND_STOP_"
+    ;;
+  update)
+    sudo su $user -c "_COMMAND_STOP_"
+    sudo su $user -c "_COMMAND_UPDATE_DST_"
+    sudo su $user -c "_COMMAND_START_"
+    ;;
+  restart)
+    sudo su $user -c "_COMMAND_STOP_"
+    sudo su $user -c "_COMMAND_START_"
+    ;;
+  *)
+    echo "Usage: $0 {start|restart|update|stop}"
+    exit 1
+    ;;
+esac
